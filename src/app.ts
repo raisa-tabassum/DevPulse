@@ -3,10 +3,10 @@ import express, {
   type Request,
   type Response,
 } from "express";
-import { logger } from "../middleware/logger";
-import authRoutes from "./auth/routes/auth.route";
-import { issuesRoute } from "./issues/routes/issue.route";
-import { globalErrorHandler } from "../middleware/globalErrorHandler";
+import { logger } from "./middleware/logger";
+import authRoutes from "./modules/auth/routes/auth.route";
+import { issuesRoute } from "./modules/issues/routes/issue.route";
+import { globalErrorHandler } from "./middleware/globalErrorHandler";
 import cors from "cors";
 
 const app: Application = express();
