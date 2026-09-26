@@ -131,7 +131,7 @@ const updateIssueFromDB = async (
 ) => {
   const { title, description, type, status } = payload;
 
-  // issue from database
+  // check issue in database
   const issueResult = await pool.query(
     `
     SELECT *
@@ -141,36 +141,52 @@ const updateIssueFromDB = async (
     [id],
   );
 
-  // if issue not found
   if (issueResult.rows.length === 0) {
     return null;
   }
 
-  // issue from database
   const issue = issueResult.rows[0];
 
-  // check contributors permission
+  // contributors permission
   if (userRole === "contributor") {
     if (issue.reporter_id !== userId || issue.status !== "open") {
       throw new Error("You don't have permission to update this issue");
     }
+
+    // contributor can't update status
+    const result = await pool.query(
+      `
+      UPDATE issues
+      SET
+        title = COALESCE($1, title),
+        description = COALESCE($2, description),
+        type = COALESCE($3, type),
+        updated_at = NOW()
+      WHERE id = $4
+      RETURNING *
+      `,
+      [title, description, type, id],
+    );
+
+    return result.rows[0];
   }
 
-  // Permission pass > update issue
+  // maintainer can update any issue
   const result = await pool.query(
     `
     UPDATE issues
     SET
-    title = COALESCE($1, title),
-    description = COALESCE($2, description),
-    type = COALESCE($3, type),
-    status = COALESCE($4, status),
-    updated_at = NOW()
+      title = COALESCE($1, title),
+      description = COALESCE($2, description),
+      type = COALESCE($3, type),
+      status = COALESCE($4, status),
+      updated_at = NOW()
     WHERE id = $5
     RETURNING *
     `,
     [title, description, type, status, id],
   );
+
   return result.rows[0];
 };
 

@@ -1,5 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 import config from "../config";
+import { StatusCodes } from "http-status-codes";
 
 export const globalErrorHandler = (
   err: unknown,
@@ -7,7 +8,7 @@ export const globalErrorHandler = (
   res: Response,
   next: NextFunction,
 ) => {
-  res.status(500).json({
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
     success: false,
     message: err instanceof Error ? err.message : "Internal Server Error",
     stack:
