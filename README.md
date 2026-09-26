@@ -29,7 +29,7 @@ Tech Stack :
 Setup Steps :
 
 1. Clone the repository
-   <!-- git clone <repository-url> -->
+   git clone https://github.com/raisa-tabassum/DevPulse
 
 2. Go to the project folder
    <!-- cd <project-folder> -->
