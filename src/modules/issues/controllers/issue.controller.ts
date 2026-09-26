@@ -19,8 +19,7 @@ const createIssue = async (req: Request, res: Response) => {
       res,
       {
         message: "Failed to create issue",
-        errors:
-          error instanceof Error ? error.message : "Internal Server Error",
+        errors: error instanceof Error ? error.message : "Something went wrong",
       },
       StatusCodes.BAD_REQUEST,
     );
@@ -48,10 +47,9 @@ const getAllIssues = async (req: Request, res: Response) => {
       res,
       {
         message: "Failed to retrieve issues",
-        errors:
-          error instanceof Error ? error.message : "Internal Server Error",
+        errors: error instanceof Error ? error.message : "Something went wrong",
       },
-      StatusCodes.BAD_REQUEST,
+      StatusCodes.INTERNAL_SERVER_ERROR,
     );
   }
 };
@@ -89,7 +87,7 @@ const getSingleIssue = async (req: Request, res: Response) => {
         errors:
           error instanceof Error ? error.message : "Internal Server Error",
       },
-      StatusCodes.BAD_REQUEST,
+      StatusCodes.INTERNAL_SERVER_ERROR,
     );
   }
 };
@@ -143,7 +141,7 @@ const updateIssue = async (req: Request, res: Response) => {
         errors:
           error instanceof Error ? error.message : "Internal Server Error",
       },
-      StatusCodes.BAD_REQUEST,
+      StatusCodes.INTERNAL_SERVER_ERROR,
     );
   }
 };
@@ -175,10 +173,9 @@ const deleteIssue = async (req: Request, res: Response) => {
       res,
       {
         message: "Failed to delete issue",
-        errors:
-          error instanceof Error ? error.message : "Internal Server Error",
+        errors: error instanceof Error ? error.message : "Something went wrong",
       },
-      StatusCodes.BAD_REQUEST,
+      StatusCodes.INTERNAL_SERVER_ERROR,
     );
   }
 };

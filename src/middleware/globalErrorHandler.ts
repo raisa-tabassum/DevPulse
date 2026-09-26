@@ -1,5 +1,4 @@
 import type { NextFunction, Request, Response } from "express";
-import config from "../config";
 import { StatusCodes } from "http-status-codes";
 
 export const globalErrorHandler = (
@@ -11,9 +10,10 @@ export const globalErrorHandler = (
   res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
     success: false,
     message: err instanceof Error ? err.message : "Internal Server Error",
-    stack:
+    /* stack:
       config.node_env === "development" && err instanceof Error
         ? err.stack
-        : undefined,
+        : undefined, */
+    errors: err instanceof Error ? err.message : "Something went wrong"
   });
 };
