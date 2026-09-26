@@ -22,7 +22,7 @@ const createIssue = async (req: Request, res: Response) => {
         errors:
           error instanceof Error ? error.message : "Internal Server Error",
       },
-      StatusCodes.INTERNAL_SERVER_ERROR,
+      StatusCodes.BAD_REQUEST,
     );
   }
 };
@@ -51,7 +51,7 @@ const getAllIssues = async (req: Request, res: Response) => {
         errors:
           error instanceof Error ? error.message : "Internal Server Error",
       },
-      StatusCodes.INTERNAL_SERVER_ERROR,
+      StatusCodes.BAD_REQUEST,
     );
   }
 };
@@ -89,7 +89,7 @@ const getSingleIssue = async (req: Request, res: Response) => {
         errors:
           error instanceof Error ? error.message : "Internal Server Error",
       },
-      StatusCodes.INTERNAL_SERVER_ERROR,
+      StatusCodes.BAD_REQUEST,
     );
   }
 };
@@ -143,7 +143,7 @@ const updateIssue = async (req: Request, res: Response) => {
         errors:
           error instanceof Error ? error.message : "Internal Server Error",
       },
-      StatusCodes.INTERNAL_SERVER_ERROR,
+      StatusCodes.BAD_REQUEST,
     );
   }
 };
@@ -178,7 +178,7 @@ const deleteIssue = async (req: Request, res: Response) => {
         errors:
           error instanceof Error ? error.message : "Internal Server Error",
       },
-      StatusCodes.INTERNAL_SERVER_ERROR,
+      StatusCodes.BAD_REQUEST,
     );
   }
 };
