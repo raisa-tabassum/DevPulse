@@ -32,7 +32,7 @@ Setup Steps :
    git clone https://github.com/raisa-tabassum/DevPulse
 
 2. Go to the project folder
-   <!-- cd <project-folder> -->
+   cd DevPulse
 
 3. Install dependencies
    npm install
